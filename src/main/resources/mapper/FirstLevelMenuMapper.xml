@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.FirstLevelMenuMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.FirstLevelMenu">
+    <id column="firstMenuId" jdbcType="VARCHAR" property="firstMenuId" />
+    <result column="firstMenuEnglishName" jdbcType="VARCHAR" property="firstMenuEnglishName" />
+    <result column="firstMenuName" jdbcType="VARCHAR" property="firstMenuName" />
+    <result column="firstMenuIcon" jdbcType="VARCHAR" property="firstMenuIcon" />
+    <result column="firstMenuIndex" jdbcType="INTEGER" property="firstMenuIndex" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <resultMap id="ThisResultMap" type="com.znh.model.FirstLevelMenu">
+    <id column="firstMenuId" jdbcType="VARCHAR" property="firstMenuId" />
+    <result column="firstMenuEnglishName" jdbcType="VARCHAR" property="firstMenuEnglishName" />
+    <result column="firstMenuName" jdbcType="VARCHAR" property="firstMenuName" />
+    <result column="firstMenuIcon" jdbcType="VARCHAR" property="firstMenuIcon" />
+    <result column="firstMenuIndex" jdbcType="INTEGER" property="firstMenuIndex" />
+    <collection property="secondLevelMenuList" ofType="com.znh.model.SecondLevelMenu">
+      <id column="secondMenuId" jdbcType="VARCHAR" property="secondMenuId" />
+      <result column="firstMenu_Id" jdbcType="VARCHAR" property="firstMenu_Id" />
+      <result column="secondMenuEnglishName" jdbcType="VARCHAR" property="secondMenuEnglishName" />
+      <result column="secondMenuName" jdbcType="VARCHAR" property="secondMenuName" />
+      <result column="secondMenuIcon" jdbcType="VARCHAR" property="secondMenuIcon" />
+      <result column="secondMenuIndex" jdbcType="INTEGER" property="secondMenuIndex" />
+      <association property="permissions" javaType="com.znh.model.Permissions">
+        <id column="permissionsId" jdbcType="VARCHAR" property="permissionsId" />
+        <result column="role_Id" jdbcType="VARCHAR" property="role_Id" />
+        <result column="secondLevelMenu_Id" jdbcType="VARCHAR" property="secondLevelMenu_Id" />
+      </association>
+    </collection>
+  </resultMap>
+  <resultMap id="OneToMoreResultMap" type="com.znh.model.list.PermissionsList">
+    <id column="firstMenuId" jdbcType="VARCHAR" property="firstMenuId" />
+    <result column="firstMenuEnglishName" jdbcType="VARCHAR" property="firstMenuEnglishName" />
+    <result column="firstMenuName" jdbcType="VARCHAR" property="firstMenuName" />
+    <result column="firstMenuIcon" jdbcType="VARCHAR" property="firstMenuIcon" />
+    <result column="firstMenuIndex" jdbcType="INTEGER" property="firstMenuIndex" />
+    <result column="secondMenuId" jdbcType="VARCHAR" property="secondMenuId" />
+    <result column="firstMenu_Id" jdbcType="VARCHAR" property="firstMenu_Id" />
+    <result column="secondMenuEnglishName" jdbcType="VARCHAR" property="secondMenuEnglishName" />
+    <result column="secondMenuName" jdbcType="VARCHAR" property="secondMenuName" />
+    <result column="secondMenuIcon" jdbcType="VARCHAR" property="secondMenuIcon" />
+    <result column="secondMenuIndex" jdbcType="INTEGER" property="secondMenuIndex" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    firstMenuId, firstMenuEnglishName, firstMenuName, firstMenuIcon, firstMenuIndex, 
+    createDateTime, createPerson, updateDateTime, updatePerson
+  </sql>
+  <!--根据用户的权限ID，查找出对应权限可以访问的页面-->
+  <select id="selectByRoleId" parameterType="java.lang.String" resultMap="ThisResultMap">
+    SELECT * FROM firstlevelmenu AS flm
+    LEFT JOIN secondlevelmenu AS slm ON flm.firstMenuId = slm.firstMenu_Id
+    LEFT JOIN permissions AS ps ON slm.secondMenuId = ps.secondLevelMenu_Id
+    WHERE ps.role_Id = #{role_id,jdbcType=VARCHAR}
+    ORDER BY flm.firstMenuIndex,slm.secondMenuIndex ASC
+  </select>
+  <select id="selectByPageIndexAndOther" resultMap="OneToMoreResultMap">
+  SELECT * FROM firstlevelmenu AS flm
+    LEFT JOIN secondlevelmenu AS slm ON flm.firstMenuId = slm.firstMenu_Id
+    <where>
+      <if test="firstMenuId != '' and firstMenuId != null">
+        flm.firstMenuId = #{firstMenuId,jdbcType=VARCHAR}
+      </if>
+      <if test="secondMenuId != '' and secondMenuId != null">
+        AND slm.secondMenuId = #{secondMenuId,jdbcType=VARCHAR}
+      </if>
+    </where>
+    ORDER BY flm.firstMenuIndex,slm.secondMenuIndex ASC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from firstlevelmenu
+    where firstMenuId = #{firstMenuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from firstlevelmenu
+    where firstMenuId = #{firstMenuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.FirstLevelMenu">
+    insert into firstlevelmenu (firstMenuId, firstMenuEnglishName, 
+      firstMenuName, firstMenuIcon, firstMenuIndex, 
+      createDateTime, createPerson, updateDateTime, 
+      updatePerson)
+    values (#{firstMenuId,jdbcType=VARCHAR}, #{firstMenuEnglishName,jdbcType=VARCHAR}, 
+      #{firstMenuName,jdbcType=VARCHAR}, #{firstMenuIcon,jdbcType=VARCHAR}, #{firstMenuIndex,jdbcType=INTEGER}, 
+      #{createDateTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.FirstLevelMenu">
+    insert into firstlevelmenu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="firstMenuId != null">
+        firstMenuId,
+      </if>
+      <if test="firstMenuEnglishName != null">
+        firstMenuEnglishName,
+      </if>
+      <if test="firstMenuName != null">
+        firstMenuName,
+      </if>
+      <if test="firstMenuIcon != null">
+        firstMenuIcon,
+      </if>
+      <if test="firstMenuIndex != null">
+        firstMenuIndex,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="firstMenuId != null">
+        #{firstMenuId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuEnglishName != null">
+        #{firstMenuEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuName != null">
+        #{firstMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuIcon != null">
+        #{firstMenuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuIndex != null">
+        #{firstMenuIndex,jdbcType=INTEGER},
+      </if>
+      <if test="createDateTime != null">
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.FirstLevelMenu">
+    update firstlevelmenu
+    <set>
+      <if test="firstMenuEnglishName != null">
+        firstMenuEnglishName = #{firstMenuEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuName != null">
+        firstMenuName = #{firstMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuIcon != null">
+        firstMenuIcon = #{firstMenuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenuIndex != null">
+        firstMenuIndex = #{firstMenuIndex,jdbcType=INTEGER},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where firstMenuId = #{firstMenuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.FirstLevelMenu">
+    update firstlevelmenu
+    set firstMenuEnglishName = #{firstMenuEnglishName,jdbcType=VARCHAR},
+      firstMenuName = #{firstMenuName,jdbcType=VARCHAR},
+      firstMenuIcon = #{firstMenuIcon,jdbcType=VARCHAR},
+      firstMenuIndex = #{firstMenuIndex,jdbcType=INTEGER},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where firstMenuId = #{firstMenuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

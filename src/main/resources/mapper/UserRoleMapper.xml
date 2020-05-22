@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.UserRole">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_Id" jdbcType="VARCHAR" property="user_Id" />
+    <result column="role_Id" jdbcType="VARCHAR" property="role_Id" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_Id, role_Id, createDateTime, createPerson, updateDateTime, updatePerson
+  </sql>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select id,user_Id, role_Id from userrole where user_Id = #{user_Id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userrole
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from userrole
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.UserRole">
+    insert into userrole (id, user_Id, role_Id, 
+      createDateTime, createPerson, updateDateTime, 
+      updatePerson)
+    values (#{id,jdbcType=VARCHAR}, #{user_Id,jdbcType=VARCHAR}, #{role_Id,jdbcType=VARCHAR}, 
+      #{createDateTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.UserRole">
+    insert into userrole
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="user_Id != null">
+        user_Id,
+      </if>
+      <if test="role_Id != null">
+        role_Id,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="user_Id != null">
+        #{user_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="role_Id != null">
+        #{role_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.UserRole">
+    update userrole
+    <set>
+      <if test="user_Id != null">
+        user_Id = #{user_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="role_Id != null">
+        role_Id = #{role_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.UserRole">
+    update userrole
+    set user_Id = #{user_Id,jdbcType=VARCHAR},
+      role_Id = #{role_Id,jdbcType=VARCHAR},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

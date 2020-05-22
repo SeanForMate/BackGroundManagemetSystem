@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>进销存管理系统</title>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="stylesheet" href="static/css/okadmin.css">
+<link rel="stylesheet" href="static/css/public.css" media="all" />
+</head>
+<body class="childrenBody">
+	<div class="layui-row layui-col-space5">
+		<!-- 条件筛选 -->
+		<div class="layui-col-md12" id="conditionFiltering">
+			<div class="layui-card">
+				<div class="layui-card-header">
+					<i class="layui-icon layui-icon-search" style="margin-right: 10px;"></i>客户筛查
+				</div>
+				<div class="layui-card-body">
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">助记码</label>
+								<div class="layui-input-inline">
+									<input type="text" class="layui-input" name="pyCode"
+										id="pyCode" placeholder="请输入助记码" />
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">客户简称</label>
+								<div class="layui-input-inline">
+									<input type="text" class="layui-input" name="customerName"
+										id="customerName" placeholder="请输入客户简称" />
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">公司名称</label>
+								<div class="layui-input-inline">
+									<input type="text" class="layui-input" name="companyName"
+										id="companyName" placeholder="请输入公司名称" />
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">联系人</label>
+								<div class="layui-input-inline">
+									<input type="text" class="layui-input" name="linkMan"
+										id="linkman" placeholder="请输入联系人" />
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">客户分类</label>
+								<div class="layui-input-inline">
+									<select name="customLevel" id="customLevel">
+										<option value="">请选择客户分类</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">客户性质</label>
+								<div class="layui-input-inline">
+									<select name="customCharacterContent"
+										id="customCharacterContent">
+										<option value="">请选择客户性质</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">客户分区</label>
+								<div class="layui-input-inline">
+									<select name="zoneAdress" id="zoneAdress">
+										<option value="">请选择客户分区</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label"></label>
+								<div class="layui-input-inline">
+									<a id="searchCustom" class="layui-btn"><i
+										class="layui-icon layui-icon-search"></i>查询客户</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 数据显示 -->
+		<div class="layui-col-md12" id="dataShow">
+			<div class="layui-card">
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="layui-card-header">
+							<i class="layui-icon layui-icon-layouts"
+								style="margin-right: 10px;"></i>客户信息
+						</div>
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<table class="layui-table" id="customList" lay-filter="customList"></table>
+					<script type="text/html" id="toolbarDemo">
+  						<div class="layui-btn-container">
+    						<div class="layui-input-inline">
+								<a class="layui-btn layui-btn-sm layui-btn-danger"
+									id="deleteChooseCustom" lay-event="deleteChooseCustom"><i class="ok-icon">&#xe6b4;</i> 批量删除</a>
+							</div>
+							<div class="layui-inline">
+								<a class="layui-btn layui-btn-sm layui-btn-normal" id="addCustom"
+									 lay-event="addCustom"><i class="ok-icon">&#xe7a7;</i> 添加客户</a>
+							</div>
+  						</div>
+					</script>
+					<script type="text/html" id="barDemo">
+  						<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  						<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+  						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="static/layui/layui.js"></script>
+	<script type="text/javascript" src="static/js/custom/customInfo.js"></script>
+</body>
+</html>

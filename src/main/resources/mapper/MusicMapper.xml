@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.MusicMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.Music">
+    <id column="musicId" jdbcType="VARCHAR" property="musicId" />
+    <result column="musicName" jdbcType="VARCHAR" property="musicName" />
+    <result column="musicArtist" jdbcType="VARCHAR" property="musicArtist" />
+    <result column="musicPath" jdbcType="VARCHAR" property="musicPath" />
+    <result column="musicUserId" jdbcType="VARCHAR" property="musicUserId" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    musicId, musicName, musicArtist, musicPath, musicUserId, createPerson, createDateTime, 
+    updatePerson, updateDateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from music
+    where musicId = #{musicId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from music
+    where musicId = #{musicId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.Music">
+    insert into music (musicId, musicName, musicArtist, 
+      musicPath, musicUserId, createPerson, 
+      createDateTime, updatePerson, updateDateTime
+      )
+    values (#{musicId,jdbcType=VARCHAR}, #{musicName,jdbcType=VARCHAR}, #{musicArtist,jdbcType=VARCHAR}, 
+      #{musicPath,jdbcType=VARCHAR}, #{musicUserId,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createDateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.Music">
+    insert into music
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="musicId != null">
+        musicId,
+      </if>
+      <if test="musicName != null">
+        musicName,
+      </if>
+      <if test="musicArtist != null">
+        musicArtist,
+      </if>
+      <if test="musicPath != null">
+        musicPath,
+      </if>
+      <if test="musicUserId != null">
+        musicUserId,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="musicId != null">
+        #{musicId,jdbcType=VARCHAR},
+      </if>
+      <if test="musicName != null">
+        #{musicName,jdbcType=VARCHAR},
+      </if>
+      <if test="musicArtist != null">
+        #{musicArtist,jdbcType=VARCHAR},
+      </if>
+      <if test="musicPath != null">
+        #{musicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="musicUserId != null">
+        #{musicUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.Music">
+    update music
+    <set>
+      <if test="musicName != null">
+        musicName = #{musicName,jdbcType=VARCHAR},
+      </if>
+      <if test="musicArtist != null">
+        musicArtist = #{musicArtist,jdbcType=VARCHAR},
+      </if>
+      <if test="musicPath != null">
+        musicPath = #{musicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="musicUserId != null">
+        musicUserId = #{musicUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where musicId = #{musicId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.Music">
+    update music
+    set musicName = #{musicName,jdbcType=VARCHAR},
+      musicArtist = #{musicArtist,jdbcType=VARCHAR},
+      musicPath = #{musicPath,jdbcType=VARCHAR},
+      musicUserId = #{musicUserId,jdbcType=VARCHAR},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP}
+    where musicId = #{musicId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,160 @@
+{
+	"basicInformation": [
+		{
+			"title": "客户信息管理",
+			"icon": "&#xe753;",
+			"href": "customInfo",
+			"spread": false
+		},
+		{
+			"title": "供应商信息管理",
+			"icon": "&#xe627;",
+			"href": "vendorInfo",
+			"spread": false
+		},
+		{
+			"title": "商品信息管理",
+			"icon": "&#xe794;",
+			"href": "commodityInfo",
+			"spread": false
+		}
+	],
+	"incomingManagement": [
+		{
+			"title": "进货单管理",
+			"icon": "&#xe7ab;",
+			"href": "page/user/userList.html",
+			"spread": false
+		},
+		{
+			"title": "入库管理",
+			"icon": "&#xe673;",
+			"href": "page/user/userGrade.html",
+			"spread": false
+		},
+		{
+			"title": "出库管理",
+			"icon": "&#xe671;",
+			"href": "page/user/userGrade.html",
+			"spread": false
+		},
+		{
+			"title": "售后服务",
+			"icon": "&#xe737;",
+			"href": "page/user/userGrade.html",
+			"spread": false
+		}
+	],
+	"salesManagement": [
+		{
+			"title": "销售单管理",
+			"icon": "&#xe764;",
+			"href": "page/systemSetting/basicParameter.html",
+			"spread": false
+		},
+		{
+			"title": "销售退货",
+			"icon": "&#xe6ac;",
+			"href": "page/systemSetting/logs.html",
+			"spread": false
+		}
+	],
+	"inventoryManagement": [
+		{
+			"title": "库存盘点",
+			"icon": "&#xe66d;",
+			"href": "page/doc/addressDoc.html",
+			"spread": false
+		},
+		{
+			"title": "价格调整",
+			"icon": "&#xe6ac;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		}
+	],
+	"queryStatistics": [
+		{
+			"title": "客户信息查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/addressDoc.html",
+			"spread": false
+		},
+		{
+			"title": "商品信息查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "供应商信息查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "销售信息查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "销售退货查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "商品入库查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "商品入库退货查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "销售排行",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		},
+		{
+			"title": "字典查询",
+			"icon": "&#xe7ab;",
+			"href": "page/doc/bodyTabDoc.html",
+			"spread": false
+		}
+	],
+	"systemManagement": [
+		{
+			"title": "用户管理",
+			"icon": "&#xe7be;",
+			"href": "userInfo",
+			"spread": false
+		},
+		{
+			"title": "权限管理",
+			"icon": "&#xe7c2;",
+			"href": "page/systemSetting/logs.html",
+			"spread": false
+		},
+		{
+			"title": "字典管理",
+			"icon": "&#xe742;",
+			"href": "page/systemSetting/logs.html",
+			"spread": false
+		},
+		{
+			"title": "操作日志管理",
+			"icon": "&#xe65f;",
+			"href": "page/systemSetting/logs.html",
+			"spread": false
+		}
+	]
+}
+
+

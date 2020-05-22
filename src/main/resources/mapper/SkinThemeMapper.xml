@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.SkinThemeMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.SkinTheme">
+    <id column="skinThemeId" jdbcType="VARCHAR" property="skinThemeId" />
+    <result column="skinName" jdbcType="VARCHAR" property="skinName" />
+    <result column="logoColor" jdbcType="VARCHAR" property="logoColor" />
+    <result column="topColor" jdbcType="VARCHAR" property="topColor" />
+    <result column="leftColor" jdbcType="VARCHAR" property="leftColor" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    skinThemeId, skinName, logoColor, topColor, leftColor, createPerson, createDate
+  </sql>
+  
+  <select id="selectSkinTheme" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from skintheme
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from skintheme
+    where skinThemeId = #{skinThemeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from skintheme
+    where skinThemeId = #{skinThemeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.SkinTheme">
+    insert into skintheme (skinThemeId, skinName, logoColor,topColor,
+      leftColor, createPerson, createDate
+      )
+    values (#{skinThemeId,jdbcType=VARCHAR}, #{skinName,jdbcType=VARCHAR},#{logoColor,jdbcType=VARCHAR}, #{topColor,jdbcType=VARCHAR},
+      #{leftColor,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.SkinTheme">
+    insert into skintheme
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skinThemeId != null">
+        skinThemeId,
+      </if>
+      <if test="skinName != null">
+        skinName,
+      </if>
+      <if test="logoColor != null">
+        logoColor,
+      </if>
+      <if test="topColor != null">
+        topColor,
+      </if>
+      <if test="leftColor != null">
+        leftColor,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="createDate != null">
+        createDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skinThemeId != null">
+        #{skinThemeId,jdbcType=VARCHAR},
+      </if>
+      <if test="skinName != null">
+        #{skinName,jdbcType=VARCHAR},
+      </if>
+      <if test="logoColor != null">
+        #{logoColor,jdbcType=VARCHAR},
+      </if>
+      <if test="topColor != null">
+        #{topColor,jdbcType=VARCHAR},
+      </if>
+      <if test="leftColor != null">
+        #{leftColor,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.SkinTheme">
+    update skintheme
+    <set>
+      <if test="skinName != null">
+        skinName = #{skinName,jdbcType=VARCHAR},
+      </if>
+      <if test="logoColor != null">
+        logoColor = #{logoColor,jdbcType=VARCHAR},
+      </if>
+      <if test="topColor != null">
+        topColor = #{topColor,jdbcType=VARCHAR},
+      </if>
+      <if test="leftColor != null">
+        leftColor = #{leftColor,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where skinThemeId = #{skinThemeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.SkinTheme">
+    update skintheme
+    set skinName = #{skinName,jdbcType=VARCHAR},
+      logoColor = #{logoColor,jdbcType=VARCHAR},
+      topColor = #{topColor,jdbcType=VARCHAR},
+      leftColor = #{leftColor,jdbcType=VARCHAR},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=TIMESTAMP}
+    where skinThemeId = #{skinThemeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.VendorMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.Vendor">
+    <id column="vendorId" jdbcType="VARCHAR" property="vendorId" />
+    <result column="vendorName" jdbcType="VARCHAR" property="vendorName" />
+    <result column="vendorAbbreviation" jdbcType="VARCHAR" property="vendorAbbreviation" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="linkMan" jdbcType="VARCHAR" property="linkMan" />
+    <result column="linkPhone" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zipCode" jdbcType="VARCHAR" property="zipCode" />
+    <result column="bankAccout" jdbcType="VARCHAR" property="bankAccout" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    vendorId, vendorName, vendorAbbreviation, telephone, linkMan, linkPhone, address, 
+    zipCode, bankAccout, fax, email, createDateTime, createPerson, updateDateTime, updatePerson
+  </sql>
+  
+  <select id="selectVendorByPageIndexAndOther" parameterType="com.znh.model.Vendor" resultMap="BaseResultMap">
+		select * from vendor
+		<where>
+			<if test="vendorName != null and vendorName != ''">
+				vendorName LIKE CONCAT('%', #{vendorName}, '%')
+			</if>
+			<if test="vendorAbbreviation != null and vendorAbbreviation != ''">
+				and vendorAbbreviation LIKE CONCAT('%', #{vendorAbbreviation}, '%')
+			</if>
+			<if test="linkMan != null and linkMan != ''">
+				and linkMan LIKE CONCAT('%', #{linkMan}, '%')
+			</if>
+		</where>
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  		select vendorId,vendorName from vendor
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vendor
+    where vendorId = #{vendorId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vendor
+    where vendorId = #{vendorId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.Vendor">
+    insert into vendor (vendorId, vendorName, vendorAbbreviation, 
+      telephone, linkMan, linkPhone, 
+      address, zipCode, bankAccout, 
+      fax, email, createDateTime, 
+      createPerson, updateDateTime, updatePerson
+      )
+    values (#{vendorId,jdbcType=VARCHAR}, #{vendorName,jdbcType=VARCHAR}, #{vendorAbbreviation,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{linkMan,jdbcType=VARCHAR}, #{linkPhone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{bankAccout,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createDateTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.Vendor">
+    insert into vendor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vendorId != null">
+        vendorId,
+      </if>
+      <if test="vendorName != null">
+        vendorName,
+      </if>
+      <if test="vendorAbbreviation != null">
+        vendorAbbreviation,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="linkMan != null">
+        linkMan,
+      </if>
+      <if test="linkPhone != null">
+        linkPhone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="zipCode != null">
+        zipCode,
+      </if>
+      <if test="bankAccout != null">
+        bankAccout,
+      </if>
+      <if test="fax != null">
+        fax,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorName != null">
+        #{vendorName,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorAbbreviation != null">
+        #{vendorAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null">
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccout != null">
+        #{bankAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        NOW(),
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.Vendor">
+    update vendor
+    <set>
+      <if test="vendorName != null">
+        vendorName = #{vendorName,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorAbbreviation != null">
+        vendorAbbreviation = #{vendorAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null">
+        linkMan = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        linkPhone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        zipCode = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccout != null">
+        bankAccout = #{bankAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vendorId = #{vendorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.Vendor">
+    update vendor
+    set vendorName = #{vendorName,jdbcType=VARCHAR},
+      vendorAbbreviation = #{vendorAbbreviation,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      linkMan = #{linkMan,jdbcType=VARCHAR},
+      linkPhone = #{linkPhone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zipCode = #{zipCode,jdbcType=VARCHAR},
+      bankAccout = #{bankAccout,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where vendorId = #{vendorId,jdbcType=VARCHAR}
+  </update>
+</mapper>

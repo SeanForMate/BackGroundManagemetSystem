@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.znh.dao.CustomMapper">
+
+	<resultMap id="BaseResultMap" type="com.znh.model.list.CustomList">
+		<id column="customerId" property="customerId" />
+		<result column="pyCode" property="pyCode" />
+		<result column="customerName" property="customerName" />
+		<result column="companyName" property="companyName" />
+		<result column="companySite" property="companySite" />
+		<result column="companyPhone" property="companyPhone" />
+		<result column="linkMan" property="linkMan" />
+		<result column="linkPhone" property="linkPhone" />
+		<result column="fax" property="fax" />
+		<result column="customerSort" property="customerSort" />
+		<result column="customerQuale" property="customerQuale" />
+		<result column="customerZone" property="customerZone" />
+		<result column="address" property="address" />
+		<result column="zipCode" property="zipCode" />
+		<result column="bankName" property="bankName" />
+		<result column="bankAccout" property="bankAccout" />
+		<result column="email" property="email" />
+		<result column="companyHomePage" property="companyHomePage" />
+		<result column="remark" property="remark" />
+		<result column="createDateTime" property="createDateTime" />
+		<result column="createPerson" property="createPerson" />
+		<result column="updateDateTime" property="updateDateTime" />
+		<result column="updatePerson" property="updatePerson" />
+		<result column="customTypeId" property="customTypeId" />
+		<result column="customLevel" property="customLevel" />
+		<result column="levelRemark" property="levelRemark" />
+		<result column="customCharacterId" property="customCharacterId" />
+		<result column="customCharacterContent"
+			property="customCharacterContent" />
+		<result column="customZoneId" property="customZoneId" />
+		<result column="zoneAdress" property="zoneAdress" />
+	</resultMap>
+	
+	<select id="selectByPageIndexAndOther" parameterType="com.znh.model.Custom" resultMap="BaseResultMap">
+		SELECT * FROM custom AS ct
+		INNER JOIN customType AS ctt ON ctt.customTypeId = ct.customerSort
+		INNER JOIN customcharacter AS ctc ON ctc.customCharacterId = ct.customerQuale
+		INNER JOIN customZone AS ctz ON ctz.customZoneId = ct.customerZone
+		<where>
+			<if test="pyCode != null and pyCode != ''"  >
+				ct.pyCode LIKE CONCAT('%', #{pyCode}, '%')
+			</if>
+			<if test="customerName != null and customerName != ''"  >
+				and ct.customerName LIKE CONCAT('%', #{customerName}, '%')
+			</if>
+			<if test="companyName != null and companyName != ''"  >
+				and ct.companyName LIKE CONCAT('%', #{companyName}, '%')
+			</if>
+			<if test="linkMan != null and linkMan != ''"  >
+				and ct.linkMan LIKE CONCAT('%', #{linkMan}, '%')
+			</if>
+			<if test="customerSort != null and customerSort != ''"  >
+				and ct.customerSort = #{customerSort}
+			</if>
+			<if test="customerQuale != null and customerQuale != ''"  >
+				and ct.customerQuale = #{customerQuale}
+			</if>
+			<if test="customerZone != null and customerZone != ''"  >
+				and ct.customerZone = #{customerZone}
+			</if>
+		</where>
+		ORDER BY ct.createDateTime DESC
+	</select>
+	
+	<select id="selectCustomByCustomId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT * FROM custom AS ct
+		INNER JOIN customType AS ctt ON ctt.customTypeId = ct.customerSort
+		INNER JOIN customcharacter AS ctc ON ctc.customCharacterId = ct.customerQuale
+		INNER JOIN customZone AS ctz ON ctz.customZoneId = ct.customerZone
+		WHERE ct.customerId = #{_parameter}
+	</select>
+	
+	<insert id="insert" parameterType="com.znh.model.Custom">
+		insert into custom
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="customerId != null">
+				customerId,
+			</if>
+			<if test="pyCode != null">
+				pyCode,
+			</if>
+			<if test="customerName != null">
+				customerName,
+			</if>
+			<if test="companyName != null">
+				companyName,
+			</if>
+			<if test="companySite != null">
+				companySite,
+			</if>
+			<if test="companyPhone != null">
+				companyPhone,
+			</if>
+			<if test="linkMan != null">
+				linkMan,
+			</if>
+			<if test="linkPhone != null">
+				linkPhone,
+			</if>
+			<if test="fax != null">
+				fax,
+			</if>
+			<if test="customerSort != null">
+				customerSort,
+			</if>
+			<if test="customerQuale != null">
+				customerQuale,
+			</if>
+			<if test="customerZone != null">
+				customerZone,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="zipCode != null">
+				zipCode,
+			</if>
+			<if test="bankName != null">
+				bankName,
+			</if>
+			<if test="bankAccout != null">
+				bankAccout,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="companyHomePage != null">
+				companyHomePage,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createDateTime != null">
+				createDateTime,
+			</if>
+			<if test="createPerson != null">
+				createPerson,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="customerId != null">
+				#{customerId},
+			</if>
+			<if test="pyCode != null">
+				#{pyCode},
+			</if>
+			<if test="customerName != null">
+				#{customerName},
+			</if>
+			<if test="companyName != null">
+				#{companyName},
+			</if>
+			<if test="companySite != null">
+				#{companySite},
+			</if>
+			<if test="companyPhone != null">
+				#{companyPhone},
+			</if>
+			<if test="linkMan != null">
+				#{linkMan},
+			</if>
+			<if test="linkPhone != null">
+				#{linkPhone},
+			</if>
+			<if test="fax != null">
+				#{fax},
+			</if>
+			<if test="customerSort != null">
+				#{customerSort},
+			</if>
+			<if test="customerQuale != null">
+				#{customerQuale},
+			</if>
+			<if test="customerZone != null">
+				#{customerZone},
+			</if>
+			<if test="address != null">
+				#{address},
+			</if>
+			<if test="zipCode != null">
+				#{zipCode},
+			</if>
+			<if test="bankName != null">
+				#{bankName},
+			</if>
+			<if test="bankAccout != null">
+				#{bankAccout},
+			</if>
+			<if test="email != null">
+				#{email},
+			</if>
+			<if test="companyHomePage != null">
+				#{companyHomePage},
+			</if>
+			<if test="remark != null">
+				#{remark},
+			</if>
+			<if test="createDateTime != null">
+				NOW(),
+			</if>
+			<if test="createPerson != null">
+				#{createPerson},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="com.znh.model.Custom">
+		update custom
+		<set>
+			<if test="pyCode != null and pyCode != ''">
+				pyCode = #{pyCode},
+			</if>
+			<if test="customerName != null and customerName != ''">
+				customerName = #{customerName},
+			</if>
+			<if test="companyName != null and companyName != ''">
+				companyName = #{companyName},
+			</if>
+			<if test="companySite != null and companySite != ''">
+				companySite = #{companySite},
+			</if>
+			<if test="companyPhone != null and companyPhone != ''">
+				companyPhone = #{companyPhone},
+			</if>
+			<if test="linkMan != null and linkMan != ''">
+				linkMan = #{linkMan},
+			</if>
+			<if test="linkPhone != null and linkPhone != ''">
+				linkPhone = #{linkPhone},
+			</if>
+			<if test="customerSort != null and customerSort != ''">
+				customerSort = #{customerSort},
+			</if>
+			<if test="customerQuale != null and customerQuale != ''">
+				customerQuale = #{customerQuale},
+			</if>
+			<if test="customerZone != null and customerZone != ''">
+				customerZone = #{customerZone},
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="zipCode != null and zipCode != ''">
+				zipCode = #{zipCode},
+			</if>
+			<if test="bankName != null and bankName != ''">
+				bankName = #{bankName},
+			</if>
+			<if test="bankAccout != null and bankAccout != ''">
+				bankAccout = #{bankAccout},
+			</if>
+			fax = #{fax},
+			companyHomePage = #{companyHomePage},
+			remark = #{remark},
+			email = #{email},
+			updateDateTime = NOW(),
+			updatePerson = #{updatePerson}
+		</set>
+		where customerId = #{customerId}
+	</update>
+
+</mapper>

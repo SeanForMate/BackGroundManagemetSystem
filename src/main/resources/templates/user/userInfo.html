@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户管理</title>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" href="static/css/okadmin.css">
+<link rel="stylesheet" href="static/css/public.css" media="all" />
+</head>
+<body class="childrenBody">
+	<div class="layui-row layui-col-space5">
+		<!-- 条件筛选 -->
+		<div class="layui-col-md12" id="conditionFiltering">
+			<div class="layui-card">
+				<div class="layui-card-header">
+					<i class="layui-icon layui-icon-search" style="margin-right: 10px;"></i>用户筛查
+				</div>
+				<div class="layui-card-body">
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">用户姓名</label>
+								<div class="layui-input-inline">
+									<input type="text" class="layui-input" name="realName"
+										id="realName" placeholder="请输入用户姓名" />
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">用户权限</label>
+								<div class="layui-input-inline">
+									<select name="roleId" id="roleId">
+										<option value="">请选择用户权限</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">用户性别</label>
+								<div class="layui-input-inline">
+									<select name="sex" id="sex">
+										<option value="">请选择用户性别</option>
+										<option value="0">女</option>
+										<option value="1">男</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<div class="layui-input-inline">
+									<a id="searchUser" class="layui-btn"><i
+										class="layui-icon layui-icon-search"></i>查询用户</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 数据显示 -->
+		<div class="layui-col-md12" id="dataShow">
+			<div class="layui-card">
+				<div class="layui-row">
+					<div class="layui-col-md12">
+						<div class="layui-card-header">
+							<i class="layui-icon layui-icon-layouts"
+								style="margin-right: 10px;"></i>用户信息
+						</div>
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<table class="layui-table" id="userList" lay-filter="userList"></table>
+					<script type="text/html" id="toolbarDemo">
+  						<div class="layui-btn-container">
+    						<div class="layui-input-inline">
+								<a class="layui-btn layui-btn-sm layui-btn-danger"
+									id="deleteChooseUser" lay-event="deleteChooseUser"><i class="ok-icon">&#xe6b4;</i> 批量删除</a>
+							</div>
+							<div class="layui-inline">
+								<a class="layui-btn layui-btn-sm layui-btn-normal" id="addUser"
+									 lay-event="addUser"><i class="ok-icon">&#xe7a7;</i> 添加用户</a>
+							</div>
+  						</div>
+					</script>
+					<script type="text/html" id="barDemo">
+  						<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  						<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+  						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="static/layui/layui.js"></script>
+	<script type="text/javascript" src="static/js/user/userInfo.js"></script>
+</body>
+</html>

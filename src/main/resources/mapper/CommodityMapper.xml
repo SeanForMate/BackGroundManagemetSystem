@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.CommodityMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.Commodity">
+    <id column="commodityId" jdbcType="VARCHAR" property="commodityId" />
+    <result column="commodityName" jdbcType="VARCHAR" property="commodityName" />
+    <result column="commodityReferred" jdbcType="VARCHAR" property="commodityReferred" />
+    <result column="commodityOrigin" jdbcType="VARCHAR" property="commodityOrigin" />
+    <result column="commodityUnit" jdbcType="VARCHAR" property="commodityUnit" />
+    <result column="commodityPriceUnit" jdbcType="VARCHAR" property="commodityPriceUnit" />
+    <result column="commodityPrice" jdbcType="VARCHAR" property="commodityPrice" />
+    <result column="commoditySize" jdbcType="VARCHAR" property="commoditySize" />
+    <result column="commodityWrap" jdbcType="VARCHAR" property="commodityWrap" />
+    <result column="commodityBatchNo" jdbcType="VARCHAR" property="commodityBatchNo" />
+    <result column="commodityApprovalNo" jdbcType="VARCHAR" property="commodityApprovalNo" />
+    <result column="commodityRemark" jdbcType="VARCHAR" property="commodityRemark" />
+    <result column="vendor_Id" jdbcType="VARCHAR" property="vendor_Id" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    commodityId, commodityName, commodityReferred, commodityOrigin, commodityUnit, commodityPriceUnit, 
+    commodityPrice, commoditySize, commodityWrap, commodityBatchNo, commodityApprovalNo, 
+    commodityRemark, vendor_Id, createDateTime, createPerson, updateDateTime, updatePerson
+  </sql>
+  <select id="selectByPageIndexAndOther" parameterType="com.znh.model.Commodity" resultMap="BaseResultMap">
+  	SELECT * FROM commodity AS c
+	INNER JOIN vendor AS v ON v.vendorId = c.vendor_Id
+	<where>
+		<if test="commodityName != null">
+			commodityName LIKE CONCAT('%', #{commodityName}, '%')
+		</if>
+		<if test="commodityReferred != null">
+			commodityReferred LIKE CONCAT('%', #{commodityReferred}, '%')
+		</if>
+		<if test="vendor_Id != null">
+			vendor_Id = #{vendor_Id}
+		</if>
+	</where>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from commodity
+    where commodityId = #{commodityId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from commodity
+    where commodityId = #{commodityId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.Commodity">
+    insert into commodity (commodityId, commodityName, commodityReferred, 
+      commodityOrigin, commodityUnit, commodityPriceUnit, 
+      commodityPrice, commoditySize, commodityWrap, 
+      commodityBatchNo, commodityApprovalNo, 
+      commodityRemark, vendor_Id, createDateTime, 
+      createPerson, updateDateTime, updatePerson
+      )
+    values (#{commodityId,jdbcType=VARCHAR}, #{commodityName,jdbcType=VARCHAR}, #{commodityReferred,jdbcType=VARCHAR}, 
+      #{commodityOrigin,jdbcType=VARCHAR}, #{commodityUnit,jdbcType=VARCHAR}, #{commodityPriceUnit,jdbcType=VARCHAR}, 
+      #{commodityPrice,jdbcType=VARCHAR}, #{commoditySize,jdbcType=VARCHAR}, #{commodityWrap,jdbcType=VARCHAR}, 
+      #{commodityBatchNo,jdbcType=VARCHAR}, #{commodityApprovalNo,jdbcType=VARCHAR}, 
+      #{commodityRemark,jdbcType=VARCHAR}, #{vendor_Id,jdbcType=VARCHAR}, #{createDateTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.Commodity">
+    insert into commodity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commodityId != null">
+        commodityId,
+      </if>
+      <if test="commodityName != null">
+        commodityName,
+      </if>
+      <if test="commodityReferred != null">
+        commodityReferred,
+      </if>
+      <if test="commodityOrigin != null">
+        commodityOrigin,
+      </if>
+      <if test="commodityUnit != null">
+        commodityUnit,
+      </if>
+      <if test="commodityPriceUnit != null">
+        commodityPriceUnit,
+      </if>
+      <if test="commodityPrice != null">
+        commodityPrice,
+      </if>
+      <if test="commoditySize != null">
+        commoditySize,
+      </if>
+      <if test="commodityWrap != null">
+        commodityWrap,
+      </if>
+      <if test="commodityBatchNo != null">
+        commodityBatchNo,
+      </if>
+      <if test="commodityApprovalNo != null">
+        commodityApprovalNo,
+      </if>
+      <if test="commodityRemark != null">
+        commodityRemark,
+      </if>
+      <if test="vendor_Id != null">
+        vendor_Id,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commodityId != null">
+        #{commodityId,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityName != null">
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityReferred != null">
+        #{commodityReferred,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityOrigin != null">
+        #{commodityOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityUnit != null">
+        #{commodityUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPriceUnit != null">
+        #{commodityPriceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null">
+        #{commodityPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditySize != null">
+        #{commoditySize,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityWrap != null">
+        #{commodityWrap,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityBatchNo != null">
+        #{commodityBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityApprovalNo != null">
+        #{commodityApprovalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityRemark != null">
+        #{commodityRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vendor_Id != null">
+        #{vendor_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.Commodity">
+    update commodity
+    <set>
+      <if test="commodityName != null">
+        commodityName = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityReferred != null">
+        commodityReferred = #{commodityReferred,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityOrigin != null">
+        commodityOrigin = #{commodityOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityUnit != null">
+        commodityUnit = #{commodityUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPriceUnit != null">
+        commodityPriceUnit = #{commodityPriceUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null">
+        commodityPrice = #{commodityPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditySize != null">
+        commoditySize = #{commoditySize,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityWrap != null">
+        commodityWrap = #{commodityWrap,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityBatchNo != null">
+        commodityBatchNo = #{commodityBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityApprovalNo != null">
+        commodityApprovalNo = #{commodityApprovalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityRemark != null">
+        commodityRemark = #{commodityRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vendor_Id != null">
+        vendor_Id = #{vendor_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commodityId = #{commodityId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.Commodity">
+    update commodity
+    set commodityName = #{commodityName,jdbcType=VARCHAR},
+      commodityReferred = #{commodityReferred,jdbcType=VARCHAR},
+      commodityOrigin = #{commodityOrigin,jdbcType=VARCHAR},
+      commodityUnit = #{commodityUnit,jdbcType=VARCHAR},
+      commodityPriceUnit = #{commodityPriceUnit,jdbcType=VARCHAR},
+      commodityPrice = #{commodityPrice,jdbcType=VARCHAR},
+      commoditySize = #{commoditySize,jdbcType=VARCHAR},
+      commodityWrap = #{commodityWrap,jdbcType=VARCHAR},
+      commodityBatchNo = #{commodityBatchNo,jdbcType=VARCHAR},
+      commodityApprovalNo = #{commodityApprovalNo,jdbcType=VARCHAR},
+      commodityRemark = #{commodityRemark,jdbcType=VARCHAR},
+      vendor_Id = #{vendor_Id,jdbcType=VARCHAR},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where commodityId = #{commodityId,jdbcType=VARCHAR}
+  </update>
+</mapper>

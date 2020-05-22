@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>进销存管理系统</title>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" href="static/css/okadmin.css">
+<link rel="stylesheet" href="static/css/public.css" media="all" />
+</head>
+<body class="childrenGrayBody">
+	<div class="layui-row">
+		<div class="layui-col-md12">
+			<fieldset class="layui-elem-field">
+				<legend>用户信息修改</legend>
+				<div class="layui-field-box">
+					<form class="layui-form" action="">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<hr class="layui-bg-blue"/>
+								<div class="layui-form-item">
+									<label class="layui-form-label">账号</label>
+									<div class="layui-input-inline">
+										<input type="hidden" name="userId" class="layui-input" />
+										<input type="text" name="userName"
+											placeholder="请输入账号(必填项)" autocomplete="off" class="layui-input layui-disabled" disabled="disabled" />
+									</div>
+									<div class="layui-form-mid layui-word-aux"><span style="color: red;"></span></div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">密码</label>
+									<div class="layui-input-inline">
+										<input type="password"  class="layui-input layui-disabled"  disabled="disabled"  value="000000"/>
+									</div>
+									<div class="layui-input-inline" style="width:90px;">
+										<button type="button" id="resetPasswordBtn" class="layui-btn layui-btn-danger">重置密码</button>
+									</div>
+									<div class="layui-form-mid layui-word-aux"><span style="color: red;">重置之后的密码为：123456</span></div>
+									<div class="layui-form-mid layui-word-aux"><span style="color: #1E9FFF;" class="trips"></span></div>
+									<input type="hidden" name="password" style="display:none;">
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">角色</label>
+									<div class="layui-input-block">
+										<select name="role_Id" id="roleId">
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">姓名</label>
+									<div class="layui-input-block">
+										<input type="text" name="realName" lay-verify="required"
+											placeholder="请输入姓名(必填项)" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">性别</label>
+									<div class="layui-input-block">
+								      <input type="radio" name="sex" value="1" title="男">
+								      <input type="radio" name="sex" value="0" title="女" >
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">联系电话</label>
+									<div class="layui-input-block">
+										<input type="text" name="linkPhone" lay-verify="linkPhone" maxlength="11"
+											placeholder="请输入联系电话(必填项)" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space5">
+								<div class="layui-col-md4">
+									<div class="grid-demo grid-demo-bg1"></div>
+								</div>
+								<div class="layui-col-md4">
+									<div class="layui-form-item">
+										<div class="layui-input-block">
+											<button class="layui-btn layui-btn-normal" lay-submit="submit"
+												lay-filter="userSubmit">立即修改</button>
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-md4">
+									<div class="grid-demo grid-demo-bg1"></div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<script type="text/javascript" src="static/layui/layui.js"></script>
+	<script type="text/javascript" src="static/js/user/updateUserInfo.js"></script>
+</body>
+</html>

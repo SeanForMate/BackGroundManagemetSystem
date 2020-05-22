@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>进销存管理系统</title>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" href="static/css/okadmin.css">
+<link rel="stylesheet" href="static/css/public.css" media="all" />
+</head>
+<body class="childrenGrayBody">
+	<div class="layui-row">
+		<div class="layui-col-md12">
+			<fieldset class="layui-elem-field">
+				<legend>客户信息填写</legend>
+				<div class="layui-field-box">
+					<form class="layui-form" action="">
+						<div class="layui-row">
+							<div class="layui-col-md6">
+								<hr class="layui-bg-red"/>
+								<div class="layui-form-item">
+									<label class="layui-form-label">助记码</label>
+									<div class="layui-input-block">
+										<input type="text" name="pyCode" lay-verify="required"
+											placeholder="请输入助记码" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">客户简称</label>
+									<div class="layui-input-block">
+										<input type="text" name="customerName" lay-verify="required"
+											placeholder="请输入客户简称" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">公司名称</label>
+									<div class="layui-input-block">
+										<input type="text" name="companyName" lay-verify="required"
+											placeholder="请输入公司名称" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">公司地址</label>
+									<div class="layui-input-block">
+										<input type="text" name="companySite" lay-verify="required"
+											placeholder="请输入公司地址" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">公司电话</label>
+									<div class="layui-input-block">
+										<input type="text" name="companyPhone" lay-verify="required"
+											placeholder="请输入公司电话" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">联系人</label>
+									<div class="layui-input-block">
+										<input type="text" name="linkMan" lay-verify="required"
+											placeholder="请输入联系人" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">联系电话</label>
+									<div class="layui-input-block">
+										<input type="text" name="linkPhone" lay-verify="required"
+											placeholder="请输入联系电话" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">传真</label>
+									<div class="layui-input-block">
+										<input type="text" name="fax"
+											placeholder="请输入传真(非必填)" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">邮箱</label>
+									<div class="layui-input-block">
+										<input type="text" name="email"
+											placeholder="请输入邮箱(非必填)" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-col-md6">
+								<hr class="layui-bg-red"/>
+								<div class="layui-form-item">
+									<label class="layui-form-label">客户分类</label>
+									<div class="layui-input-block">
+										<select name="customerSort" lay-verify="required" id="customLevel">
+											<option value="">请选择客户分类</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">客户性质</label>
+									<div class="layui-input-block">
+										<select name="customerQuale" lay-verify="required" id="customCharacterContent">
+											<option value="">请选择客户性质</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">客户分区</label>
+									<div class="layui-input-block">
+										<select name="customerZone" lay-verify="required" id="zoneAdress">
+											<option value="">请选择客户分区</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">投递地址</label>
+									<div class="layui-input-block">
+										<input type="text" name="address" lay-verify="required"
+											placeholder="请输入投递地址" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">邮政编码</label>
+									<div class="layui-input-block">
+										<input type="text" name="zipCode" lay-verify="required"
+											placeholder="请输入邮政编码" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">开户银行</label>
+									<div class="layui-input-block">
+										<input type="text" name="bankName" lay-verify="required"
+											placeholder="请输入开户银行" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">银行账号</label>
+									<div class="layui-input-block">
+										<input type="text" name="bankAccout" lay-verify="required"
+											placeholder="请输入银行账号" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">公司主页</label>
+									<div class="layui-input-block">
+										<input type="text" name="companyHomePage"
+											placeholder="请输入公司主页(非必填)" autocomplete="off" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-form-item layui-form-text">
+									<label class="layui-form-label">备注</label>
+									<div class="layui-input-block">
+										<textarea name="remark" placeholder="请输入备注内容(非必填)"
+											class="layui-textarea"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row layui-col-space5">
+								<div class="layui-col-md4">
+									<div class="grid-demo grid-demo-bg1"></div>
+								</div>
+								<div class="layui-col-md4">
+									<div class="layui-form-item">
+										<div class="layui-input-block">
+											<button class="layui-btn" lay-submit="submit"
+												lay-filter="customSubmit">立即提交</button>
+											<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-md4">
+									<div class="grid-demo grid-demo-bg1"></div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<script type="text/javascript" src="static/layui/layui.js"></script>
+	<script type="text/javascript" src="static/js/custom/addCustomInfo.js"></script>
+</body>
+</html>

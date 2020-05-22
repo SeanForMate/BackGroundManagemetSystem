@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.SecondLevelMenuMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.SecondLevelMenu">
+    <id column="secondMenuId" jdbcType="VARCHAR" property="secondMenuId" />
+    <result column="firstMenu_Id" jdbcType="VARCHAR" property="firstMenu_Id" />
+    <result column="secondMenuEnglishName" jdbcType="VARCHAR" property="secondMenuEnglishName" />
+    <result column="secondMenuName" jdbcType="VARCHAR" property="secondMenuName" />
+    <result column="secondMenuIcon" jdbcType="VARCHAR" property="secondMenuIcon" />
+    <result column="secondMenuIndex" jdbcType="INTEGER" property="secondMenuIndex" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    secondMenuId, firstMenu_Id, secondMenuEnglishName, secondMenuName, secondMenuIcon, 
+    secondMenuIndex, createDateTime, createPerson, updateDateTime, updatePerson
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from secondlevelmenu
+    where secondMenuId = #{secondMenuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from secondlevelmenu
+    where secondMenuId = #{secondMenuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.SecondLevelMenu">
+    insert into secondlevelmenu (secondMenuId, firstMenu_Id, secondMenuEnglishName, 
+      secondMenuName, secondMenuIcon, secondMenuIndex, 
+      createDateTime, createPerson, updateDateTime, 
+      updatePerson)
+    values (#{secondMenuId,jdbcType=VARCHAR}, #{firstMenu_Id,jdbcType=VARCHAR}, #{secondMenuEnglishName,jdbcType=VARCHAR}, 
+      #{secondMenuName,jdbcType=VARCHAR}, #{secondMenuIcon,jdbcType=VARCHAR}, #{secondMenuIndex,jdbcType=INTEGER}, 
+      #{createDateTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.SecondLevelMenu">
+    insert into secondlevelmenu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="secondMenuId != null">
+        secondMenuId,
+      </if>
+      <if test="firstMenu_Id != null">
+        firstMenu_Id,
+      </if>
+      <if test="secondMenuEnglishName != null">
+        secondMenuEnglishName,
+      </if>
+      <if test="secondMenuName != null">
+        secondMenuName,
+      </if>
+      <if test="secondMenuIcon != null">
+        secondMenuIcon,
+      </if>
+      <if test="secondMenuIndex != null">
+        secondMenuIndex,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="secondMenuId != null">
+        #{secondMenuId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstMenu_Id != null">
+        #{firstMenu_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuEnglishName != null">
+        #{secondMenuEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuName != null">
+        #{secondMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuIcon != null">
+        #{secondMenuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuIndex != null">
+        #{secondMenuIndex,jdbcType=INTEGER},
+      </if>
+      <if test="createDateTime != null">
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.SecondLevelMenu">
+    update secondlevelmenu
+    <set>
+      <if test="firstMenu_Id != null">
+        firstMenu_Id = #{firstMenu_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuEnglishName != null">
+        secondMenuEnglishName = #{secondMenuEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuName != null">
+        secondMenuName = #{secondMenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuIcon != null">
+        secondMenuIcon = #{secondMenuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="secondMenuIndex != null">
+        secondMenuIndex = #{secondMenuIndex,jdbcType=INTEGER},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where secondMenuId = #{secondMenuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.SecondLevelMenu">
+    update secondlevelmenu
+    set firstMenu_Id = #{firstMenu_Id,jdbcType=VARCHAR},
+      secondMenuEnglishName = #{secondMenuEnglishName,jdbcType=VARCHAR},
+      secondMenuName = #{secondMenuName,jdbcType=VARCHAR},
+      secondMenuIcon = #{secondMenuIcon,jdbcType=VARCHAR},
+      secondMenuIndex = #{secondMenuIndex,jdbcType=INTEGER},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where secondMenuId = #{secondMenuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

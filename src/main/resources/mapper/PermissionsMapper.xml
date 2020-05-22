@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znh.dao.PermissionsMapper">
+  <resultMap id="BaseResultMap" type="com.znh.model.Permissions">
+    <id column="permissionsId" jdbcType="VARCHAR" property="permissionsId" />
+    <result column="role_Id" jdbcType="VARCHAR" property="role_Id" />
+    <result column="secondLevelMenu_Id" jdbcType="VARCHAR" property="secondLevelMenu_Id" />
+    <result column="createDateTime" jdbcType="TIMESTAMP" property="createDateTime" />
+    <result column="createPerson" jdbcType="VARCHAR" property="createPerson" />
+    <result column="updateDateTime" jdbcType="TIMESTAMP" property="updateDateTime" />
+    <result column="updatePerson" jdbcType="VARCHAR" property="updatePerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    permissionsId, role_Id, secondLevelMenu_Id, createDateTime, createPerson, updateDateTime, 
+    updatePerson
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from permissions
+    where permissionsId = #{permissionsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from permissions
+    where permissionsId = #{permissionsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.znh.model.Permissions">
+    insert into permissions (permissionsId, role_Id, secondLevelMenu_Id, 
+      createDateTime, createPerson, updateDateTime, 
+      updatePerson)
+    values (#{permissionsId,jdbcType=VARCHAR}, #{role_Id,jdbcType=VARCHAR}, #{secondLevelMenu_Id,jdbcType=VARCHAR}, 
+      #{createDateTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.znh.model.Permissions">
+    insert into permissions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionsId != null">
+        permissionsId,
+      </if>
+      <if test="role_Id != null">
+        role_Id,
+      </if>
+      <if test="secondLevelMenu_Id != null">
+        secondLevelMenu_Id,
+      </if>
+      <if test="createDateTime != null">
+        createDateTime,
+      </if>
+      <if test="createPerson != null">
+        createPerson,
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime,
+      </if>
+      <if test="updatePerson != null">
+        updatePerson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionsId != null">
+        #{permissionsId,jdbcType=VARCHAR},
+      </if>
+      <if test="role_Id != null">
+        #{role_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelMenu_Id != null">
+        #{secondLevelMenu_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.znh.model.Permissions">
+    update permissions
+    <set>
+      <if test="role_Id != null">
+        role_Id = #{role_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelMenu_Id != null">
+        secondLevelMenu_Id = #{secondLevelMenu_Id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null">
+        createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        createPerson = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null">
+        updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        updatePerson = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where permissionsId = #{permissionsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.znh.model.Permissions">
+    update permissions
+    set role_Id = #{role_Id,jdbcType=VARCHAR},
+      secondLevelMenu_Id = #{secondLevelMenu_Id,jdbcType=VARCHAR},
+      createDateTime = #{createDateTime,jdbcType=TIMESTAMP},
+      createPerson = #{createPerson,jdbcType=VARCHAR},
+      updateDateTime = #{updateDateTime,jdbcType=TIMESTAMP},
+      updatePerson = #{updatePerson,jdbcType=VARCHAR}
+    where permissionsId = #{permissionsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

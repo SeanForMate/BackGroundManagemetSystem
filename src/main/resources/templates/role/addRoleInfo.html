@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>进销存管理系统</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="static/css/okadmin.css">
+    <link rel="stylesheet" href="static/css/public.css" media="all" />
+    <style type="text/css">
+        .layui-input-inline{width:300px !important;}
+    </style>
+</head>
+<body class="childrenGrayBody">
+<div class="layui-row">
+    <div class="layui-col-md12">
+        <fieldset class="layui-elem-field">
+            <legend>角色信息填写</legend>
+            <div class="layui-field-box">
+                <form class="layui-form" action="">
+                    <div class="layui-row">
+                        <div class="layui-col-md12">
+                            <hr class="layui-bg-blue"/>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">角色名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="roleName" id="roleName" lay-required="required"
+                                           placeholder="请输入角色名称" autocomplete="off" class="layui-input" />
+                                </div>
+                                <div class="layui-form-mid layui-word-aux" id="tripText"></div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">角色备注</label>
+                                <div class="layui-input-inline">
+                                    <textarea name="roleRemark" id="roleRemark" lay-required="required"
+                                              placeholder="请输入角色备注" autocomplete="off" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space5">
+                            <div class="layui-col-md4">
+                                <div class="grid-demo grid-demo-bg1"></div>
+                            </div>
+                            <div class="layui-col-md4">
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit="submit"
+                                                lay-filter="submitBtn">立即提交</button>
+                                        <button type="reset" class="layui-btn layui-btn-danger">重置</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md4">
+                                <div class="grid-demo grid-demo-bg1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<script type="text/javascript" src="static/layui/layui.js"></script>
+<script type="text/javascript" src="static/js/role/addRoleInfo.js"></script>
+</body>
+</html>

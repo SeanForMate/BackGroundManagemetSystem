@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>进销存管理系统</title>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" href="static/css/okadmin.css">
+<link rel="stylesheet" href="static/css/public.css" media="all" />
+<style type="text/css">
+	.layui-form-label{width:130px !important;}
+	.layui-input-block {margin-left: 130px !important;}
+</style>
+</head>
+<body class="childrenGrayBody">
+	<div class="layui-row">
+		<div class="layui-col-md12">
+			<fieldset class="layui-elem-field">
+				<legend>用户信息</legend>
+				<div class="layui-field-box">
+					<form class="layui-form layui-form-pane" action="">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<hr class="layui-bg-green"/>
+								<div class="layui-form-item">
+									<label class="layui-form-label">账号</label>
+									<div class="layui-input-block">
+										<input type="text" name="userName" class="layui-input" disabled="disabled" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">权限</label>
+									<div class="layui-input-block">
+										<input type="text" name="roleName" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">姓名</label>
+									<div class="layui-input-block">
+										<input type="text" name="realName" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">性别</label>
+									<div class="layui-input-block">
+								      <input type="text" name="sex" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">联系电话</label>
+									<div class="layui-input-block">
+										<input type="text" name="linkPhone" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">上一次登录时间</label>
+									<div class="layui-input-block">
+										<input type="text" name="lastLoginDateTime" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">皮肤主题</label>
+									<div class="layui-input-block">
+										<input type="text" name="skinName" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">创建人</label>
+									<div class="layui-input-block">
+										<input type="text" name="createPerson" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">创建时间</label>
+									<div class="layui-input-block">
+										<input type="text" name="createDateTime" class="layui-input" disabled="disabled"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<script type="text/javascript" src="static/layui/layui.js"></script>
+	<script type="text/javascript" src="static/js/user/searchUserInfo.js"></script>
+</body>
+</html>

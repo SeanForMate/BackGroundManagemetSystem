@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>进销存管理系统</title>
+<meta name="renderer" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" href="static/css/okadmin.css">
+<link rel="stylesheet" href="static/css/public.css" media="all" />
+<style type="text/css">
+.layui-elem-quote {
+	margin-bottom: 10px;
+	padding: 15px;
+	line-height: 22px;
+	border-left: 5px solid #01aaed;
+	border-radius: 0 2px 2px 0;
+	background-color: #f2f2f2;
+}
+.layadmin-carousel .layui-carousel-ind {
+	position: absolute;
+	top: -41px;
+	text-align: right;
+}
+.layui-carousel-ind {
+	position: relative;
+	top: -35px;
+	width: 100%;
+	line-height: 0 !important;
+	text-align: center;
+	font-size: 0;
+}
+.layadmin-carousel .layui-carousel-ind ul {
+	background: 0 0;
+}
+.layadmin-carousel .layui-carousel-ind li.layui-this {
+	background-color: #999;
+}
+.layadmin-carousel .layui-carousel-ind li:hover {
+	background-color: #c2c2c2;
+}
+.layadmin-carousel .layui-carousel-ind li {
+	background-color: #e2e2e2;
+}
+.layui-carousel-ind li.layui-this {
+	background-color: #fff;
+}
+.layui-carousel-ind li:hover {
+	background-color: rgba(255, 255, 255, .7);
+}
+.layadmin-shortcut li {
+	text-align: center;
+}
+.layui-carousel-ind li {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 0 3px;
+	font-size: 14px;
+	background-color: #e2e2e2;
+	background-color: rgba(255, 255, 255, .5);
+	border-radius: 50%;
+	cursor: pointer;
+	-webkit-transition-duration: .3s;
+	transition-duration: .3s;
+}
+.carousel-item ul {
+	display: none;
+}
+.carousel-item ul.layui-this {
+	display: inline-block;
+}
+.layadmin-takerates {
+	height: 185px;
+}
+.layadmin-takerates .layui-progress {
+    margin: 40px 0 60px;
+}
+.layui-progress {
+    position: relative;
+    height: 18px;
+    border-radius: 20px;
+    background-color: #e2e2e2;
+}
+.layadmin-takerates .layui-progress:last-child {
+    margin: 90px 0 10px 0;
+}
+.layadmin-takerates .layui-progress h3 {
+    position: absolute;
+    right: 0;
+    top: -35px;
+    color: #000;
+    font-size: 14px;
+}
+.layadmin-takerates .layui-progress-bar {
+    text-align: left;
+}
+.layadmin-takerates .layui-progress-text {
+	position: absolute;
+    top: -40px;
+    line-height: 26px;
+    font-size: 26px;
+    color:#000;
+}
+</style>
+</head>
+<body>
+<div class="childrenBody">
+	<blockquote class="layui-elem-quote layui-bg-cyan">
+		<div class="top_title clr">
+			<div class="layui-row">
+				<!--欢迎语和显示时间-->
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md10">
+					<div id="nowTime" style="line-height: 28px;"></div>
+				</div>
+				<!--走马灯上次登录时间显示-->
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md2">
+					<div id="lastTime" style="line-height: 28px;"></div>
+				</div>
+			</div>
+		</div>
+	</blockquote>
+	<div class="layui-row layui-col-space10">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4 layui-col-lg4">
+			<div class="layui-card">
+				<div class="layui-card-header">
+					<i class="ok-icon" style="margin-right: 10px;">&#xe660;</i>数据
+				</div>
+				<div class="layui-card-body">
+					<div class="layui-carousel layadmin-carousel layadmin-shortcut" id="firstDataMsg"
+						lay-anim="" lay-indicator="inside" lay-arrow="none"
+						style="width: 100%;">
+						<div class="carousel-item">
+							<ul
+								class="layui-row layui-col-space10 layui-anim layui-anim-fadein layui-this">
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: #1E9FFF;">10862</span><span class="salesTitle">出货/台</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: #FF5722">12532</span><span class="salesTitle">入库/台</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: #009688;">9532</span><span class="salesTitle">销售金额/万</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: red;">1138</span><span class="salesTitle">库存/台</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: forestgreen;">8126</span><span class="salesTitle">回款总额/万</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: red;">1203</span><span class="salesTitle">欠款总额/万</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: darkorchid;">1</span><span class="salesTitle">今日录入客户</span></li>
+								<li class="layui-col-xs3 layui-col-sm3 layui-col-md3"><span
+										class="layui-icon" style="color: #CD5C5C;">120</span><span class="salesTitle">总客户</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4 layui-col-lg4">
+			<div class="layui-card">
+				<div class="layui-card-header">
+					<i class="ok-icon" style="margin-right: 10px;">&#xe640;</i>2020业绩达标情况
+				</div>
+				<div class="layui-card-body layadmin-takerates">
+					<div class="layui-progress layui-progress-big"  lay-showpercent="yes">
+						<h3>销售工程师</h3>
+						<div class="layui-progress-bar layui-bg-orange" lay-percent="15%" style="width: 15%;"><span class="layui-progress-text"></span></div>
+					</div>
+					<div class="layui-progress layui-progress-big" lay-showpercent="yes">
+						<h3>电子商务</h3>
+						<div class="layui-progress-bar layui-bg-blue" lay-percent="9%" style="width: 9%;"><span class="layui-progress-text"></span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4 layui-col-lg4">
+			<div class="layui-card">
+				<div class="layui-card-header">
+					<i class="layui-icon layui-icon-app" style="margin-right: 10px;"></i>快速访问
+				</div>
+				<div class="layui-card-body">
+					<div class="layui-carousel layadmin-carousel layadmin-shortcut"
+						lay-anim="" lay-indicator="inside" lay-arrow="none"
+						style="width: 100%;">
+						<div class="carousel-item">
+							<ul
+								class="layui-row layui-col-space10 layui-anim layui-anim-fadein layui-this">
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									data-url="page/main.html"><i
+										class="layui-icon layui-icon-form"></i><cite>客户信息</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-form"></i><cite>商品信息</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-form"></i><cite>供应商信息</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-form"></i><cite>销售信息</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-chart-screen"></i><cite>客户统计图</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-chart-screen"></i><cite>商品统计图</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-chart-screen"></i><cite>供应商统计图</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-chart-screen"></i><cite>销售统计图</cite></a></li>
+							</ul>
+							<ul
+								class="layui-row layui-col-space10 layui-anim layui-anim-fadein">
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+								<li class="layui-col-xs4 layui-col-sm4 layui-col-md3 layui-col-lg3"><a
+									lay-href="home/homepage1.html"><i
+										class="layui-icon layui-icon-console"></i><cite>主页2</cite></a></li>
+							</ul>
+						</div>
+						<div class="layui-carousel-ind">
+							<ul>
+								<li class="layui-this"></li>
+								<li class=""></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 数据图表显示 -->
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md8 layui-col-lg8">
+			<div class="layui-card">
+				<div class="layui-card-header">
+					<i class="layui-icon" data-icon="&#xe629;"
+						style="margin-right: 10px;">&#xe629;</i>2019年销售额
+				</div>
+				<div class="layui-card-body">
+					<div id="dataShow" style="height: 370px; background: white;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4 layui-col-lg4">
+			<div class="layui-card">
+				<div class="layui-card-header"><i class="layui-icon" data-icon="&#xe667;"
+						style="margin-right: 10px;">&#xe667;</i>最新公告
+				</div>
+				<div class="layui-card-body">
+					<table class="layui-table mag0" lay-skin="line">
+						<tbody class="hot_news"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script type="text/javascript" src="static/layui/layui.js"></script>
+	<script type="text/javascript" src="static/js/echarts.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+</body>
+</html>
