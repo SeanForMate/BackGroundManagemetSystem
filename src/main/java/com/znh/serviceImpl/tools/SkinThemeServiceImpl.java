@@ -1,4 +1,4 @@
-package com.znh.service;
+package com.znh.serviceImpl.tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +18,9 @@ import com.znh.util.JsonData;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class SkinThemeService {
+public class SkinThemeServiceImpl {
 	
-	private static final Logger log = LoggerFactory.getLogger(SkinThemeService.class);
+	private static final Logger log = LoggerFactory.getLogger(SkinThemeServiceImpl.class);
 	
 	@Autowired
 	SkinThemeMapper skinThemeMapper;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.znh.model.SkinTheme;
-import com.znh.service.SkinThemeService;
+import com.znh.serviceImpl.tools.SkinThemeServiceImpl;
 import com.znh.util.JsonData;
 
 @RestController
@@ -15,7 +15,7 @@ import com.znh.util.JsonData;
 public class SkinThemeController {
 	
 	@Autowired
-	SkinThemeService skinThemeService;
+	SkinThemeServiceImpl skinThemeService;
 	
 	/**
 	 * 获取全部的皮肤主题

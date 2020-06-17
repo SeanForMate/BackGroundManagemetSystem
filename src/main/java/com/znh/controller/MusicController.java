@@ -1,7 +1,7 @@
 package com.znh.controller;
 
 import com.znh.model.Music;
-import com.znh.service.MusicServcie;
+import com.znh.serviceImpl.tools.MusicServcieImpl;
 import com.znh.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MusicController {
 
     @Autowired
-    MusicServcie musicServcie;
+    MusicServcieImpl musicServcie;
 
     /**
      * 上传音乐

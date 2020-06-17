@@ -1,4 +1,0 @@
-zuul:
-  routes:
-    springcloud-consumer-config: /customer/**
-    springcloud-provider-config: /provider/**

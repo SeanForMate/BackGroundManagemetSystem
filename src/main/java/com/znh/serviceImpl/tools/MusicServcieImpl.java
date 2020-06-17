@@ -1,4 +1,4 @@
-package com.znh.service;
+package com.znh.serviceImpl.tools;
 
 import com.znh.dao.MusicMapper;
 import com.znh.model.Music;
@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class MusicServcie {
+public class MusicServcieImpl {
 
-    private static final Logger log = LoggerFactory.getLogger(MusicServcie.class);
+    private static final Logger log = LoggerFactory.getLogger(MusicServcieImpl.class);
 
     @Autowired
     MusicMapper musicMapper;
